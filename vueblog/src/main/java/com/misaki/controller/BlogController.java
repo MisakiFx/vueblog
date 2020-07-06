@@ -18,6 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 public class BlogController {
@@ -58,5 +59,21 @@ public class BlogController {
 
         blogService.saveOrUpdate(temp);
         return Result.success("release success");
+    }
+
+    @GetMapping("/blog/delete/{id}")
+    public Result delete(@PathVariable(name = "id")String  id){
+        boolean result = blogService.removeById(id);// 据库中为Long id
+        Assert.isTrue(result,"本文章已被删除");
+        return Result.success("成功删除本文章");
+    }
+
+    @GetMapping("/blog/findByTitle")
+    public Result findByTitle(@RequestParam(defaultValue = "") String title){
+        List<Blog> blogs = blogService.list(new QueryWrapper<Blog>()
+                .like("title", title)
+                .orderByDesc("created"));
+        Assert.notNull(blogs,"未查询到指定文章");
+        return Result.success("成功查询到指定文章", blogs);
     }
 }

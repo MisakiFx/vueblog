@@ -9,6 +9,19 @@ public class Result implements Serializable {
     private int code;
     private String message;
     private Object data;
+    public static Result success(String msg,Object data){
+        return success(200,msg,data);
+    }
+
+    public static Result success(int code,String msg,Object data){
+        Result result = new Result();
+        result.setCode(code);
+        result.setMessage(msg);
+        result.setData(data);
+        return result;
+    }
+
+
     public static Result success(Object data) {
         Result r = new Result();
         r.code = 200;
