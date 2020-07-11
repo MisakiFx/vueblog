@@ -4,6 +4,7 @@ import store from './store'
 import Element from 'element-ui'
 import axios from 'axios'
 import "./axios.js"
+import "./permission"
 import Vue from 'vue'
 import mavonEditor from 'mavon-editor'
 

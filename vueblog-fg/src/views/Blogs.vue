@@ -16,10 +16,10 @@
                                         {{ blog.title }}
                                     </router-link>
                                 </span>
-                                <el-button @click="del(blog.id)" style="float: right;" type="danger" plain icon="el-icon-delete" circle></el-button>
+                                <el-button @click="del(blog.id)" style="float: right;" type="danger" plain icon="el-icon-delete" circle v-if="ownBlog"></el-button>
                                 <el-button @click="cplink(blog.id)" style="float: right; margin-right: 10px" type="success" plain icon="el-icon-link" circle></el-button>
                                 <router-link :to="{name: 'BlogEdit',params:{blogId: blog.id}}">
-                                    <el-button style="float: right;" type="primary" plain icon="el-icon-edit" circle></el-button>
+                                    <el-button style="float: right;" type="primary" plain icon="el-icon-edit" circle v-if="ownBlog"></el-button>
                                 </router-link>
                             </div>
                             <div class="m-desc">
